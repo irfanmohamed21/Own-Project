@@ -1,0 +1,21 @@
+import { AudioLines, Cpu, Globe2, Layers3, LockKeyhole, Workflow } from "lucide-react";
+import { PageMeta } from "@/components/PageMeta";
+import { LANGUAGE_OPTIONS } from "@/utils/audio";
+
+export default function About() {
+  return <><PageMeta title="About" description="Learn how automatic speech recognition works, the ASR Tool workflow, language support, and model tiers."/>
+    <div className="page-wrap">
+      <section className="about-intro"><div className="eyebrow">A research-friendly tool</div><h1>Speech, made searchable.</h1><p>ASR Tool connects your recording to an automatic speech recognition service and presents its returned text in a clear, usable workspace. It does not create or fill in transcripts on its own.</p></section>
+      <div className="about-grid">
+        <article className="panel about-card"><AudioLines size={19} color="hsl(var(--primary))"/><h2>What is ASR?</h2><p>Automatic speech recognition (ASR) converts spoken language in an audio signal into written text. A model analyzes sound patterns and predicts the words most likely to have been spoken. Results depend on recording quality, accent, vocabulary, and model choice.</p></article>
+        <article className="panel about-card"><Workflow size={19} color="hsl(var(--primary))"/><h2>A straightforward workflow</h2><ul><li>Add an audio file or record through your microphone.</li><li>Choose a model tier and spoken language, or use auto-detection.</li><li>Send the audio to your configured API service.</li><li>Review, copy, or download the service's returned transcript.</li></ul></article>
+        <article className="panel about-card"><Cpu size={19} color="hsl(var(--primary))"/><h2>Model tiers</h2><p>Available tiers follow the Whisper model family. Larger models typically trade additional processing time and resources for improved recognition quality.</p>
+          <div className="tier-row"><b>tiny</b><span>Smallest and fastest; useful for quick checks.</span></div><div className="tier-row"><b>base</b><span>Balanced speed and accuracy; the default.</span></div><div className="tier-row"><b>small</b><span>Higher recognition quality with more processing.</span></div><div className="tier-row"><b>medium</b><span>Most capable listed tier; highest compute demand.</span></div>
+        </article>
+         <article className="panel about-card"><Globe2 size={19} color="hsl(var(--primary))"/><h2>Language options</h2><p>Choose a language to guide recognition or let the backend detect it. The selector includes English, Tamil, Hindi, Malayalam, Telugu, Kannada, and other languages supported by Whisper.</p><div className="language-tags">{LANGUAGE_OPTIONS.slice(1, 7).map(({ code, label }) => <span className="language-tag" key={code}>{label}</span>)}</div><details className="language-details"><summary>View all language options</summary><div className="language-tags">{LANGUAGE_OPTIONS.slice(7).map(({ code, label }) => <span className="language-tag" key={code}>{label}</span>)}</div></details></article>
+         <article className="panel about-card"><Layers3 size={19} color="hsl(var(--primary))"/><h2>Technologies</h2><p>The responsive client uses React, TypeScript, and Tailwind CSS. The included Python FastAPI service runs faster-whisper and uses FFmpeg to decode common audio and video formats. Audio is sent to the configured backend, which returns the transcript and processing metadata.</p><div className="language-tags"><span className="language-tag">React</span><span className="language-tag">TypeScript</span><span className="language-tag">Tailwind CSS</span><span className="language-tag">Python</span><span className="language-tag">FastAPI</span><span className="language-tag">faster-whisper</span><span className="language-tag">FFmpeg</span></div></article>
+        <article className="panel about-card"><LockKeyhole size={19} color="hsl(var(--primary))"/><h2>Data and privacy</h2><p>Audio is transmitted to your configured backend for processing. Transcript history is stored in this browser's local storage and remains on this device until you remove it or clear browser data. Avoid submitting sensitive recordings unless your service is approved for them.</p></article>
+      </div>
+    </div>
+  </>;
+}
